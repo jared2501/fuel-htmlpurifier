@@ -3,7 +3,7 @@
   * HTMLPurifier packaging for fuel
  *
  * @package		HTMLPurifier
- * @version		4.2
+ * @version		4.5
  * @license		LGPL 2.1
  * @link		http://htmlpurifier.org/
  * 
@@ -20,7 +20,7 @@ if (!defined('HTMLPURIFIER_CACHE')) {
 	define('HTMLPURIFIER_CACHE', $cache_dir );
 }
 
-Fuel\Core\Autoloader::add_classes(array(
+Autoloader::add_classes(array(
 'HTMLPurifier'	=> __DIR__.'/classes/HTMLPurifier.php',
 'HTMLPurifier_AttrCollections'	=> __DIR__.'/classes/HTMLPurifier/AttrCollections.php',
 'HTMLPurifier_AttrDef'	=> __DIR__.'/classes/HTMLPurifier/AttrDef.php',
@@ -76,6 +76,7 @@ Fuel\Core\Autoloader::add_classes(array(
 'HTMLPurifier_VarParser'	=> __DIR__.'/classes/HTMLPurifier/VarParser.php',
 'HTMLPurifier_VarParserException'	=> __DIR__.'/classes/HTMLPurifier/VarParserException.php',
 'HTMLPurifier_AttrDef_CSS'	=> __DIR__.'/classes/HTMLPurifier/AttrDef/CSS.php',
+'HTMLPurifier_AttrDef_Clone'	=> __DIR__.'/classes/HTMLPurifier/AttrDef/Clone.php',
 'HTMLPurifier_AttrDef_Enum'	=> __DIR__.'/classes/HTMLPurifier/AttrDef/Enum.php',
 'HTMLPurifier_AttrDef_Integer'	=> __DIR__.'/classes/HTMLPurifier/AttrDef/Integer.php',
 'HTMLPurifier_AttrDef_Lang'	=> __DIR__.'/classes/HTMLPurifier/AttrDef/Lang.php',
@@ -93,6 +94,7 @@ Fuel\Core\Autoloader::add_classes(array(
 'HTMLPurifier_AttrDef_CSS_Filter'	=> __DIR__.'/classes/HTMLPurifier/AttrDef/CSS/Filter.php',
 'HTMLPurifier_AttrDef_CSS_Font'	=> __DIR__.'/classes/HTMLPurifier/AttrDef/CSS/Font.php',
 'HTMLPurifier_AttrDef_CSS_FontFamily'	=> __DIR__.'/classes/HTMLPurifier/AttrDef/CSS/FontFamily.php',
+'HTMLPurifier_AttrDef_CSS_Ident'	=> __DIR__.'/classes/AttrDef/CSS/Ident.php',
 'HTMLPurifier_AttrDef_CSS_ImportantDecorator'	=> __DIR__.'/classes/HTMLPurifier/AttrDef/CSS/ImportantDecorator.php',
 'HTMLPurifier_AttrDef_CSS_Length'	=> __DIR__.'/classes/HTMLPurifier/AttrDef/CSS/Length.php',
 'HTMLPurifier_AttrDef_CSS_ListStyle'	=> __DIR__.'/classes/HTMLPurifier/AttrDef/CSS/ListStyle.php',
@@ -128,14 +130,17 @@ Fuel\Core\Autoloader::add_classes(array(
 'HTMLPurifier_AttrTransform_Length'	=> __DIR__.'/classes/HTMLPurifier/AttrTransform/Length.php',
 'HTMLPurifier_AttrTransform_Name'	=> __DIR__.'/classes/HTMLPurifier/AttrTransform/Name.php',
 'HTMLPurifier_AttrTransform_NameSync'	=> __DIR__.'/classes/HTMLPurifier/AttrTransform/NameSync.php',
+'HTMLPurifier_AttrTransform_Nofollow'	=> __DIR__.'/classes/HTMLPurifier/AttrTransform/Nofollow.php',
 'HTMLPurifier_AttrTransform_SafeEmbed'	=> __DIR__.'/classes/HTMLPurifier/AttrTransform/SafeEmbed.php',
 'HTMLPurifier_AttrTransform_SafeObject'	=> __DIR__.'/classes/HTMLPurifier/AttrTransform/SafeObject.php',
 'HTMLPurifier_AttrTransform_SafeParam'	=> __DIR__.'/classes/HTMLPurifier/AttrTransform/SafeParam.php',
 'HTMLPurifier_AttrTransform_ScriptRequired'	=> __DIR__.'/classes/HTMLPurifier/AttrTransform/ScriptRequired.php',
+'HTMLPurifier_AttrTransform_TargetBlank'	=> __DIR__.'/classes/HTMLPurifier/AttrTransform/TargetBlank.php',
 'HTMLPurifier_AttrTransform_Textarea'	=> __DIR__.'/classes/HTMLPurifier/AttrTransform/Textarea.php',
 'HTMLPurifier_ChildDef_Chameleon'	=> __DIR__.'/classes/HTMLPurifier/ChildDef/Chameleon.php',
 'HTMLPurifier_ChildDef_Custom'	=> __DIR__.'/classes/HTMLPurifier/ChildDef/Custom.php',
 'HTMLPurifier_ChildDef_Empty'	=> __DIR__.'/classes/HTMLPurifier/ChildDef/Empty.php',
+'HTMLPurifier_ChildDef_List'	=> __DIR__.'/classes/HTMLPurifier/ChildDef/List.php',
 'HTMLPurifier_ChildDef_Required'	=> __DIR__.'/classes/HTMLPurifier/ChildDef/Required.php',
 'HTMLPurifier_ChildDef_Optional'	=> __DIR__.'/classes/HTMLPurifier/ChildDef/Optional.php',
 'HTMLPurifier_ChildDef_StrictBlockquote'	=> __DIR__.'/classes/HTMLPurifier/ChildDef/StrictBlockquote.php',
@@ -150,10 +155,12 @@ Fuel\Core\Autoloader::add_classes(array(
 'HTMLPurifier_HTMLModule_Edit'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Edit.php',
 'HTMLPurifier_HTMLModule_Forms'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Forms.php',
 'HTMLPurifier_HTMLModule_Hypertext'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Hypertext.php',
+'HTMLPurifier_HTMLModule_Iframe'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Iframe.php',
 'HTMLPurifier_HTMLModule_Image'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Image.php',
 'HTMLPurifier_HTMLModule_Legacy'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Legacy.php',
 'HTMLPurifier_HTMLModule_List'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/List.php',
 'HTMLPurifier_HTMLModule_Name'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Name.php',
+'HTMLPurifier_HTMLModule_Nofollow'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Nofollow.php',
 'HTMLPurifier_HTMLModule_NonXMLCommonAttributes'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/NonXMLCommonAttributes.php',
 'HTMLPurifier_HTMLModule_Object'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Object.php',
 'HTMLPurifier_HTMLModule_Presentation'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Presentation.php',
@@ -162,9 +169,11 @@ Fuel\Core\Autoloader::add_classes(array(
 'HTMLPurifier_HTMLModule_SafeEmbed'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/SafeEmbed.php',
 'HTMLPurifier_HTMLModule_SafeObject'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/SafeObject.php',
 'HTMLPurifier_HTMLModule_Scripting'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Scripting.php',
+'HTMLPurifier_HTMLModule_SafeScripting'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/SafeScripting.php',
 'HTMLPurifier_HTMLModule_StyleAttribute'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/StyleAttribute.php',
 'HTMLPurifier_HTMLModule_Tables'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Tables.php',
 'HTMLPurifier_HTMLModule_Target'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Target.php',
+'HTMLPurifier_HTMLModule_TargetBlank'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/TargetBlank.php',
 'HTMLPurifier_HTMLModule_Text'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Text.php',
 'HTMLPurifier_HTMLModule_Tidy'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/Tidy.php',
 'HTMLPurifier_HTMLModule_XMLCommonAttributes'	=> __DIR__.'/classes/HTMLPurifier/HTMLModule/XMLCommonAttributes.php',
@@ -203,6 +212,7 @@ Fuel\Core\Autoloader::add_classes(array(
 'HTMLPurifier_URIFilter_HostBlacklist'	=> __DIR__.'/classes/HTMLPurifier/URIFilter/HostBlacklist.php',
 'HTMLPurifier_URIFilter_MakeAbsolute'	=> __DIR__.'/classes/HTMLPurifier/URIFilter/MakeAbsolute.php',
 'HTMLPurifier_URIFilter_Munge'	=> __DIR__.'/classes/HTMLPurifier/URIFilter/Munge.php',
+'HTMLPurifier_URIFilter_SafeIframe'	=> __DIR__.'/classes/HTMLPurifier/URIFilter/SafeIframe.php',
 'HTMLPurifier_URIScheme_data'	=> __DIR__.'/classes/HTMLPurifier/URIScheme/data.php',
 'HTMLPurifier_URIScheme_file'	=> __DIR__.'/classes/HTMLPurifier/URIScheme/file.php',
 'HTMLPurifier_URIScheme_ftp'	=> __DIR__.'/classes/HTMLPurifier/URIScheme/ftp.php',

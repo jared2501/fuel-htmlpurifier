@@ -4,6 +4,9 @@
 
 This is simple wrapper package for [Fuel](http://fuelphp.com) to help HTML Purifier usage.
 
+# Version
+This now matches to HTML Purifier 4.5.0 release
+
 # Example
 
 Add package to config.packages array or introduce when needed by Fuel::add_package('htmlpurifier')
